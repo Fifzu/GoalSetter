@@ -24,6 +24,13 @@ public class MainActivity extends AppCompatActivity
     private static Context context;
     public static ArrayList<String> arrayList;
 
+    private NavTemplate nav_main;
+    private NavTemplate nav_goals;
+    private NavTemplate nav_placeholder;
+    private NavTemplate nav_infos;
+    private NavTemplate nav_settings;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +52,15 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        nav_main = new NavTemplate();
+        nav_goals = new NavTemplate();
+        nav_placeholder = new NavTemplate();
+        nav_infos = new NavTemplate();
+        nav_settings = new NavTemplate();
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Zuweisung der aktuellen Sicht beim Erzeugen der Klasse.
-    //    displayFragment(R.id.nav_settings);
     }
 
     @Override
@@ -65,47 +76,36 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        displayFragment(item.getItemId());
         return true;
     }
 
     private void displayFragment(int fragmentId) {
 
-        // creating fragment object
         Fragment fragment = null;
 
-        /*
+
         switch (fragmentId) {
-            case R.id.nav_chat:
-                fragment = new ChatTab();
+            case R.id.nav_main:
+                fragment = nav_main;
                 break;
 
-            case R.id.nav_map:
-                fragment = new MapTab();
+            case R.id.nav_goals:
+                fragment = nav_goals;
+                break;
+
+            case R.id.nav_placeholder:
+                fragment = nav_placeholder;
+                break;
+
+            case R.id.nav_infos:
+                fragment = nav_infos;
                 break;
 
             case R.id.nav_settings:
-                fragment = new SettingsTab();
+                fragment = nav_settings;
                 break;
-        }*/
+        }
 
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
