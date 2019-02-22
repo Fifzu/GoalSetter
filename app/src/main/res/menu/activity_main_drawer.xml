@@ -9,9 +9,13 @@
             android:icon="@mipmap/ic_launcher"
             android:title="Goals Menü" />
         <item
-            android:id="@+id/nav_goals"
-            android:icon="@mipmap/ic_launcher"
-            android:title="Goals Manager" />
+            android:id="@+id/nav_manage_goals"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Goals Manager" />
+        <item
+            android:id="@+id/nav_add_goals"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Add Goals" />
         <item
             android:id="@+id/nav_placeholder"
             android:icon="@mipmap/ic_launcher"
