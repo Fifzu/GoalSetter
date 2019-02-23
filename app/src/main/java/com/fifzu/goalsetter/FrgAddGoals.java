@@ -13,19 +13,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 public class FrgAddGoals extends Fragment{
-    private Goal goal;
-    private Context context;
-
-    private enum Duration {
-        SHORT, MEDIUM, LONG
-    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view =  inflater.inflate(R.layout.frg_add_goals, container, false);
-        context = container.getContext();
 
         final Spinner goalSpinner = view.findViewById(R.id.spin_goalsType);
 
@@ -43,7 +36,8 @@ public class FrgAddGoals extends Fragment{
         btnSave.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         String goalName = etGoalName.getText().toString();
-                                        Long spinnerSelectedId = goalSpinner.getSelectedItemId();
+                                        Long l = goalSpinner.getSelectedItemId();
+                                        Integer spinnerSelectedId = l.intValue();
                                         saveGoal(goalName, spinnerSelectedId);
                                     }
                                 }
@@ -52,7 +46,7 @@ public class FrgAddGoals extends Fragment{
             return view;
         }
 
-    private void saveGoal(String goalName, Long spinnerSelectedId) {
+    private void saveGoal(String goalName, Integer spinnerSelectedId) {
         Goal goal = new Goal();
 
         goal.setName(goalName);

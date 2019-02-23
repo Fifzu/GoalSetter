@@ -10,16 +10,17 @@
             android:title="Goals Menü" />
         <item
             android:id="@+id/nav_manage_goals"
-        android:icon="@mipmap/ic_launcher"
-        android:title="Goals Manager" />
-        <item
-            android:id="@+id/nav_add_goals"
-        android:icon="@mipmap/ic_launcher"
-        android:title="Add Goals" />
+            android:icon="@mipmap/ic_launcher"
+            android:title="Goals Manager" />
         <item
             android:id="@+id/nav_placeholder"
             android:icon="@mipmap/ic_launcher"
             android:title="Placeholder" />
+        <item
+            android:id="@+id/nav_add_goals"
+            android:icon="@mipmap/ic_launcher"
+            android:visible="false"
+            android:title="Add Goals" />
     </group>
 
     <item android:title="Sonstiges">

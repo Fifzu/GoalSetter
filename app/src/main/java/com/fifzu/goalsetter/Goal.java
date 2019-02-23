@@ -1,27 +1,17 @@
 package com.fifzu.goalsetter;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Goal {
 
-    private GoalType goalType;
+    private Integer goalType;
     private LocalDateTime validUntil;
     private LocalDateTime lastUpdated;
     private String name;
     private Boolean fixed;
     private Integer value;
-
-    private enum GoalType {
-        SHORT, MEDIUM, LONG
-    }
-
-/*
-    public Goal() {
-        validUntil = LocalDateTime.now();
-        validUntil = validUntil.plusDays(7);
-    }
-*/
-
 
     public String getName() {
         return name;
@@ -31,25 +21,25 @@ public class Goal {
         this.name = name;
     }
 
-    public void setDuration(Long dur) {
-        int dirInt = dur.intValue();
-        goalType = GoalType.values()[dirInt];
+    public void setDuration(Integer dur) {
+
+        goalType = dur;
         validUntil = LocalDateTime.now();
         lastUpdated = LocalDateTime.now();
 
         switch (goalType) {
 
-            case SHORT:
+            case 0:
                 validUntil = validUntil.plusDays(10);
                 value = 10;
                 break;
 
-            case MEDIUM:
+            case 1:
                 validUntil = validUntil.plusDays(40);
                 value = 40;
                 break;
 
-            case LONG:
+            case 2:
                 validUntil = validUntil.plusDays(200);
                 value = 200;
                 break;
@@ -68,14 +58,16 @@ public class Goal {
         return value;
     }
 
-    public LocalDateTime getValidUntil() {
-        return validUntil;
+    public String getValidUntil() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.mm.yyyy");
+        String str = validUntil.format(formatter);
+        return str;
     }
 
     public LocalDateTime getLastUpdated() {
         return lastUpdated;
     }
-    public GoalType getGoalType() {
+    public Integer getGoalType() {
         return goalType;
     }
 }

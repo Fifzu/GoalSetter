@@ -1,6 +1,5 @@
 package com.fifzu.goalsetter;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -17,26 +16,13 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static Context context;
     public ArrayList<Goal> goalList;
-
-    private enum Duration {
-        SHORT, MEDIUM, LONG
-    }
-
-    private NavTemplate nav_main;
-
-
-
-    private MyApplication myApplication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         goalList = new ArrayList<Goal>();
-
-        context = getApplicationContext();
 
         setContentView(R.layout.activity_main);
 
@@ -115,8 +101,36 @@ public class MainActivity extends AppCompatActivity
     public void addGoal(Goal goal){
         this.goalList.add(goal);
     }
-    public ArrayList <Goal> getGoalList(){
-        return goalList;
+
+    public ArrayList <Goal> getShortGoalList(){
+        ArrayList<Goal> listToSend = new ArrayList<Goal>();
+
+        for (Goal goal : goalList) {
+            if (goal.getGoalType() == 0) {
+                listToSend.add(goal);
+            }
+        }
+        return listToSend;
+    }
+    public ArrayList <Goal> getMediumGoalList(){
+        ArrayList<Goal> listToSend = new ArrayList<Goal>();
+
+        for (Goal goal : goalList) {
+            if (goal.getGoalType() == 1) {
+                listToSend.add(goal);
+            }
+        }
+        return listToSend;
+    }
+    public ArrayList <Goal> getLongGoalList(){
+        ArrayList<Goal> listToSend = new ArrayList<Goal>();
+
+        for (Goal goal : goalList) {
+            if (goal.getGoalType() == 2) {
+                listToSend.add(goal);
+            }
+        }
+        return listToSend;
     }
 
 }
