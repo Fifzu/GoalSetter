@@ -12,5 +12,12 @@
         <item>Middle</item>
         <item>Long</item>
     </string-array>
+    <string-array name="goalsClass_array">
+        <item>Fortune</item>
+        <item>Knowledge</item>
+        <item>Reputation</item>
+        <item>Romance</item>
+        <item>Family</item>
+    </string-array>
 
 </resources>

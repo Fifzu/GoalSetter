@@ -99,7 +99,37 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void addGoal(Goal goal){
-        this.goalList.add(goal);
+        Integer goalType = goal.getGoalType();
+
+        ArrayList<Goal> listToCompare = new ArrayList<Goal>();
+
+        switch (goalType) {
+            case 0:
+                listToCompare = getShortGoalList();
+                if(listToCompare.size()>3){
+                    throw new IllegalArgumentException("Too many Goals defined. Delete one!");
+                } else {
+                    this.goalList.add(goal);
+                }
+                break;
+            case 1:
+                listToCompare = getMediumGoalList();
+                if(listToCompare.size()>2){
+                    throw new IllegalArgumentException("Too many Goals defined. Delete one!");
+                } else {
+                    this.goalList.add(goal);
+                }
+                break;
+            case 2:
+                listToCompare = getLongGoalList();
+                if(listToCompare.size()>1){
+                    throw new IllegalArgumentException("Too many Goals defined. Delete one!");
+                } else {
+                    this.goalList.add(goal);
+                }
+                break;
+        }
+
     }
 
     public ArrayList <Goal> getShortGoalList(){

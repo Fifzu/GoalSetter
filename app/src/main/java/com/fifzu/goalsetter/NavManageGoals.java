@@ -36,6 +36,7 @@ public class NavManageGoals extends Fragment {
             TextView tvName = new TextView(getContext());
             TextView tvValid = new TextView(getContext());
 
+
             switch (i) {
                 case 0:
                     iv = view.findViewById(R.id.shortGoal0Image);
@@ -60,6 +61,7 @@ public class NavManageGoals extends Fragment {
             }
             tvName.setText(shortGoalList.get(i).getName());
             tvValid.setText(shortGoalList.get(i).getValidUntil());
+            iv.setImageResource(shortGoalList.get(i).getGoalIcon());
         }
 
 
@@ -87,6 +89,7 @@ public class NavManageGoals extends Fragment {
             }
             tvName.setText(mediumGoalList.get(i).getName());
             tvValid.setText(mediumGoalList.get(i).getValidUntil());
+            iv.setImageResource(mediumGoalList.get(i).getGoalIcon());
         }
 
 
@@ -109,6 +112,7 @@ public class NavManageGoals extends Fragment {
             }
             tvName.setText(longGoalList.get(i).getName());
             tvValid.setText(longGoalList.get(i).getValidUntil());
+            iv.setImageResource(longGoalList.get(i).getGoalIcon());
         }
 
 
