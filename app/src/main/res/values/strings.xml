@@ -19,5 +19,13 @@
         <item>Romance</item>
         <item>Family</item>
     </string-array>
+    <string-array name="mood_array">
+        <item>Undefined</item>
+        <item>Loser</item>
+        <item>Depressed</item>
+        <item>Mediocre</item>
+        <item>Dude</item>
+        <item>Superstar</item>
+    </string-array>
 
 </resources>

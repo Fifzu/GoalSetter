@@ -11,18 +11,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public ArrayList<Goal> goalList;
+    private ArrayList<Goal> goalList;
+    private int mood;
+    private static int MOOD_IN = -100;
+    private static int MOOD_MAX = 100;
+    private LocalDateTime lastUpdated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         goalList = new ArrayList<Goal>();
+        mood = 0;
 
         setContentView(R.layout.activity_main);
 
@@ -37,6 +49,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        if (savedInstanceState != null) {
+            goalList = savedInstanceState.getParcelableArrayList("goalList");
+            mood = savedInstanceState.getInt("mood");
+
+            lastUpdated = LocalDateTime.ofInstant(Instant.ofEpochMilli(savedInstanceState.getLong("lastUpdated")),
+                    TimeZone.getDefault().toZoneId());
+
+        }
 
     }
 
@@ -62,8 +83,8 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
 
         switch (fragmentId) {
-            case R.id.nav_main:
-                fragment = new NavTemplate();
+            case R.id.nav_mood:
+                fragment = new NavMood();
                 break;
 
             case R.id.nav_add_goals:
@@ -93,6 +114,8 @@ public class MainActivity extends AppCompatActivity
             ft.addToBackStack(null);
             ft.commit();
         }
+
+        updateStatus();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -132,6 +155,64 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public void updateStatus() {
+        boolean platzhalter=true;
+
+        if (lastUpdated==null){
+            lastUpdated= LocalDateTime.now();
+        }
+        int daysSinceUpdate = calculateDaysSinceUpdate();
+        mood = mood - (daysSinceUpdate*3);
+        deleteOldGoals();
+
+        lastUpdated = LocalDateTime.now();
+    }
+
+    private int calculateDaysSinceUpdate(){
+        boolean updated = false;
+        int daysSinceUpdate =0;
+        LocalDateTime dateToday = LocalDateTime.now();
+
+
+
+        updated = !isDayDifference(lastUpdated,dateToday);
+
+        if (!updated) {
+            daysSinceUpdate = getDayDifference(lastUpdated, dateToday);
+        }
+        return daysSinceUpdate;
+    }
+
+    private int getDayDifference(LocalDateTime date0, LocalDateTime dateTime1) {
+        Duration dur = Duration.between(date0, dateTime1);
+        int daysDif=0;
+        Long days =  dur.toDays();
+        daysDif =days.intValue();
+        return daysDif;
+    }
+
+    private boolean isDayDifference(LocalDateTime date0, LocalDateTime dateTime1) {
+        boolean dif = true;
+
+        if(date0.getYear()==dateTime1.getYear()){
+            if (date0.getMonth()==dateTime1.getMonth()) {
+                if (date0.getDayOfMonth()==dateTime1.getDayOfMonth()) {
+                    dif = false;
+                }
+            }
+        }
+
+        return dif;
+    }
+
+    private void deleteOldGoals() {
+        for(int i =0; i< goalList.size();i++){
+            if(goalList.get(i).getValidUntilDate().isBefore(LocalDateTime.now())){
+                goalList.remove(i);
+            }
+        }
+    }
+
     public ArrayList <Goal> getShortGoalList(){
         ArrayList<Goal> listToSend = new ArrayList<Goal>();
 
@@ -163,4 +244,33 @@ public class MainActivity extends AppCompatActivity
         return listToSend;
     }
 
+    public int getMood() {
+        return mood;
+    }
+
+    public void setMood(int mood) {
+        this.mood = mood;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelableArrayList("goalList",goalList);
+        outState.putInt("mood",mood);
+        outState.putLong("lastUpdated",lastUpdated.atZone(ZoneId.systemDefault()).toEpochSecond());
+        super.onSaveInstanceState(outState);
+    }
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        goalList = savedInstanceState.getParcelableArrayList("goalList");
+        mood = savedInstanceState.getInt("mood");
+
+        lastUpdated = LocalDateTime.ofInstant(Instant.ofEpochMilli(savedInstanceState.getLong("lastUpdated")),
+                TimeZone.getDefault().toZoneId());
+
+    }
 }

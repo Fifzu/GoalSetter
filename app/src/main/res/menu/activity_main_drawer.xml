@@ -5,9 +5,9 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_main"
+            android:id="@+id/nav_mood"
             android:icon="@mipmap/ic_launcher"
-            android:title="Goals Menü" />
+            android:title="Mood Manager" />
         <item
             android:id="@+id/nav_manage_goals"
             android:icon="@mipmap/ic_launcher"
