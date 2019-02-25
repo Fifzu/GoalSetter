@@ -1,5 +1,7 @@
 package com.fifzu.goalsetter;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,13 +13,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import java.text.SimpleDateFormat;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity
@@ -25,8 +29,6 @@ public class MainActivity extends AppCompatActivity
 
     private ArrayList<Goal> goalList;
     private int mood;
-    private static int MOOD_IN = -100;
-    private static int MOOD_MAX = 100;
     private LocalDateTime lastUpdated;
 
     @Override
@@ -50,14 +52,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        if (savedInstanceState != null) {
-            goalList = savedInstanceState.getParcelableArrayList("goalList");
-            mood = savedInstanceState.getInt("mood");
-
-            lastUpdated = LocalDateTime.ofInstant(Instant.ofEpochMilli(savedInstanceState.getLong("lastUpdated")),
-                    TimeZone.getDefault().toZoneId());
-
-        }
+        loadData();
 
     }
 
@@ -253,24 +248,52 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    protected void onPause()
+    {
+        super.onPause();
 
-        super.onSaveInstanceState(outState);
+        SharedPreferences shref;
+        SharedPreferences.Editor editor;
+        shref = getApplicationContext().getSharedPreferences("GOALSETTER", Context.MODE_PRIVATE);
 
-        outState.putParcelableArrayList("goalList",goalList);
-        outState.putInt("mood",mood);
-        outState.putLong("lastUpdated",lastUpdated.atZone(ZoneId.systemDefault()).toEpochSecond());
-        super.onSaveInstanceState(outState);
+        Gson gson = new Gson();
+        String json = gson.toJson(goalList);
+        editor = shref.edit();
+
+        editor.remove("goalList").commit();
+        editor.putString("goalList", json);
+        editor.commit();
+
+        editor.remove("mood").commit();
+        editor.putInt("mood",mood);
+        editor.commit();
+
+        editor.remove("lastUpdated").commit();
+        editor.putLong("lastUpdated",lastUpdated.atZone(ZoneId.systemDefault()).toEpochSecond());
+        editor.commit();
+
     }
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
 
-        goalList = savedInstanceState.getParcelableArrayList("goalList");
-        mood = savedInstanceState.getInt("mood");
+    private void loadData() {
+        Gson gson = new Gson();
+        SharedPreferences shref;
+        shref = getApplicationContext().getSharedPreferences("GOALSETTER", Context.MODE_PRIVATE);
 
-        lastUpdated = LocalDateTime.ofInstant(Instant.ofEpochMilli(savedInstanceState.getLong("lastUpdated")),
+
+        String response=shref.getString("goalList" , "");
+        goalList = gson.fromJson(response,
+                new TypeToken<List<Goal>>(){}.getType());
+
+        if (goalList==null) {
+            goalList = new ArrayList<Goal>();
+        }
+
+
+        mood = shref.getInt("mood",0);
+        long l = (shref.getLong("lastUpdated",LocalDateTime.now().atZone(ZoneId.systemDefault()).toEpochSecond()));
+
+        lastUpdated =  LocalDateTime.ofInstant(Instant.ofEpochSecond(l),
                 TimeZone.getDefault().toZoneId());
-
     }
+
 }

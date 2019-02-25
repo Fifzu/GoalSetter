@@ -20,8 +20,6 @@ import android.widget.Toast;
 
 public class FrgAddGoals extends Fragment{
 
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,13 +42,7 @@ public class FrgAddGoals extends Fragment{
         saGoalClass
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gsGoalClass.setAdapter(saGoalClass);
-                /*
-                .createFromResource(getActivity().getBaseContext(), R.array.goalsClass_array,
-                        android.R.layout.simple_spinner_item);
-        saGoalClass
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        gsGoalClass.setAdapter(saGoalClass);
-*/
+
         final EditText etGoalName = view.findViewById(R.id.goalName);
 
         Button btnSave = view.findViewById(R.id.btn_saveGoal);

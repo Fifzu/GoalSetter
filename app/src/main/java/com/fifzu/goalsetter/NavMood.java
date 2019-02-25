@@ -1,7 +1,5 @@
 package com.fifzu.goalsetter;
 
-import android.app.Activity;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -54,10 +52,6 @@ public class NavMood extends Fragment{
             return view;
         }
 
-    private void setBarStatus(int s) {
-        moodBar.setProgress(s);
-    }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -66,12 +60,10 @@ public class NavMood extends Fragment{
     }
 
     private void updateStatus(int s) {
-
         moodBar.setProgress(s);
         ivMood.setImageResource(moodDatabase[s]);
 
         tvStatusName.setText( getResources().getStringArray(R.array.mood_array)[s]);
-
     }
 
     private int calculateStatus() {
@@ -84,6 +76,8 @@ public class NavMood extends Fragment{
         } else if (mood>40) {
             status = 4;
         } else if (mood>-40) {
+            status = 3;
+        } else if (mood>-200) {
             status = 2;
         } else {
             status = 1;
