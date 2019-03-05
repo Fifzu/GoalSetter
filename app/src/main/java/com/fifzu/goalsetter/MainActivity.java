@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         loadData();
-
+        displayFragment(R.id.nav_mood);
     }
 
     @Override
@@ -196,7 +196,6 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         }
-
         return dif;
     }
 
@@ -323,7 +322,6 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences shref;
         shref = getApplicationContext().getSharedPreferences("GOALSETTER", Context.MODE_PRIVATE);
 
-
         String response=shref.getString("goalList" , "");
         goalList = gson.fromJson(response,
                 new TypeToken<List<Goal>>(){}.getType());
@@ -332,13 +330,10 @@ public class MainActivity extends AppCompatActivity
             goalList = new ArrayList<Goal>();
         }
 
-
         mood = shref.getInt("mood",0);
         long l = (shref.getLong("lastUpdated",LocalDateTime.now().atZone(ZoneId.systemDefault()).toEpochSecond()));
 
         lastUpdated =  LocalDateTime.ofInstant(Instant.ofEpochSecond(l),
                 TimeZone.getDefault().toZoneId());
-
     }
-
 }
