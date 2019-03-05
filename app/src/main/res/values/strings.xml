@@ -27,8 +27,8 @@
     <string name="confirm_message">Das folgende Ziel wird bestätigt:</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
-    <string name="confirm">Nein</string>
-    <string name="delete">Nein</string>
+    <string name="confirm">Ziel bestätigen</string>
+    <string name="delete">Ziel löschen</string>
 
     <string-array name="goalsType_array">
         <item>Kurz</item>

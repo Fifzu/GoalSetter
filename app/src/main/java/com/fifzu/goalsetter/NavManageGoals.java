@@ -83,7 +83,6 @@ public class NavManageGoals extends Fragment {
                     popup.getMenuInflater().inflate(R.menu.goal_popup_menu, popup.getMenu());
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         public boolean onMenuItemClick(final MenuItem item) {
-                        //    Toast.makeText(getContext(),"You Clicked : " + item.getTitle() + "ON " + shortGoalList.get(goalID).getName(), Toast.LENGTH_LONG).show();
                             switch (item.getItemId()) {
                                 case R.id.delete:
                                     deleteGoal(shortGoalList.get(goalID).getUniqueID(),shortGoalList.get(goalID).getName());
