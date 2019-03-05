@@ -57,10 +57,8 @@ public class FrgAddGoals extends Fragment{
                                 }
         );
 
-        EditText editText = view.findViewById(R.id.goalName);
         View.OnFocusChangeListener ofcListener = new MyFocusChangeListener();
-        editText.setOnFocusChangeListener(ofcListener);
-
+        etGoalName.setOnFocusChangeListener(ofcListener);
         return view;
     }
 
@@ -90,13 +88,12 @@ public class FrgAddGoals extends Fragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Add New Goal");
+        getActivity().setTitle(getString(R.string.add_goals));
     }
 
     private class MyFocusChangeListener implements View.OnFocusChangeListener {
 
         public void onFocusChange(View v, boolean hasFocus){
-
             if(v.getId() == R.id.goalName && !hasFocus) {
 
                 InputMethodManager imm =  (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);

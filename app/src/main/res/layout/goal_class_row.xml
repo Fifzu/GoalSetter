@@ -9,7 +9,7 @@
         android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_menu_camera"/>
+        android:src="@drawable/ic_not_interested"/>
     <TextView
         android:id="@+id/tvGoalClass"
         android:layout_width="match_parent"

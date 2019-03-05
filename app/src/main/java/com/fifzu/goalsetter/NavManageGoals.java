@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class NavManageGoals extends Fragment {
 
-
     private ArrayList<Goal> shortGoalList;
     private ArrayList<Goal> mediumGoalList;
     private ArrayList<Goal> longGoalList;
@@ -81,10 +80,7 @@ public class NavManageGoals extends Fragment {
                 public void onClick(View view) {
 
                     PopupMenu popup = new PopupMenu(getContext(), view);
-                    //Inflating the Popup using xml file
                     popup.getMenuInflater().inflate(R.menu.goal_popup_menu, popup.getMenu());
-
-                    //registering popup with OnMenuItemClickListener
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         public boolean onMenuItemClick(final MenuItem item) {
                         //    Toast.makeText(getContext(),"You Clicked : " + item.getTitle() + "ON " + shortGoalList.get(goalID).getName(), Toast.LENGTH_LONG).show();
@@ -95,16 +91,14 @@ public class NavManageGoals extends Fragment {
                                 case R.id.confirm:
                                     confirmGoal(shortGoalList.get(goalID).getUniqueID(),shortGoalList.get(goalID).getName());
                                     break;
-
                             }
                             return true;
                         }
                     });
-                    popup.show();//showing popup menu
+                    popup.show();
                 }
             });
         }
-
 
         for (int i = 0; i < mediumGoalList.size(); i++) {
             ImageView iv = new ImageView(getContext());
@@ -136,32 +130,26 @@ public class NavManageGoals extends Fragment {
             iv.setImageResource(mediumGoalList.get(i).getGoalIcon());
 
             final int goalID  = i;
-
             llLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
                     PopupMenu popup = new PopupMenu(getContext(), view);
-                    //Inflating the Popup using xml file
                     popup.getMenuInflater().inflate(R.menu.goal_popup_menu, popup.getMenu());
-
-                    //registering popup with OnMenuItemClickListener
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         public boolean onMenuItemClick(final MenuItem item) {
-                            //    Toast.makeText(getContext(),"You Clicked : " + item.getTitle() + "ON " + shortGoalList.get(goalID).getName(), Toast.LENGTH_LONG).show();
-                            switch (item.getItemId()) {
+                           switch (item.getItemId()) {
                                 case R.id.delete:
                                     deleteGoal(mediumGoalList.get(goalID).getUniqueID(),mediumGoalList.get(goalID).getName());
                                     break;
                                 case R.id.confirm:
                                     confirmGoal(mediumGoalList.get(goalID).getUniqueID(),mediumGoalList.get(goalID).getName());
                                     break;
-
                             }
                             return true;
                         }
                     });
-                    popup.show();//showing popup menu
+                    popup.show();
                 }
             });
         }
@@ -197,12 +185,9 @@ public class NavManageGoals extends Fragment {
                 public void onClick(View view) {
 
                     PopupMenu popup = new PopupMenu(getContext(), view);
-
                     popup.getMenuInflater().inflate(R.menu.goal_popup_menu, popup.getMenu());
-
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         public boolean onMenuItemClick(final MenuItem item) {
-
                             switch (item.getItemId()) {
                                 case R.id.delete:
                                     deleteGoal(longGoalList.get(goalID).getUniqueID(),longGoalList.get(goalID).getName());
@@ -210,7 +195,6 @@ public class NavManageGoals extends Fragment {
                                 case R.id.confirm:
                                     confirmGoal(longGoalList.get(goalID).getUniqueID(),longGoalList.get(goalID).getName());
                                     break;
-
                             }
                             return true;
                         }
@@ -251,8 +235,8 @@ public class NavManageGoals extends Fragment {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("You are going to delete " + goatName + ". \n Are you sure?").setPositiveButton("Yes", dialogClickListener)
-                .setNegativeButton("No", dialogClickListener).show();
+        builder.setMessage(getString(R.string.delete_message) +"\n" + goatName).setPositiveButton(getString(R.string.yes), dialogClickListener)
+                .setNegativeButton(getString(R.string.no), dialogClickListener).show();
     }
     private void confirmGoal(final int index, String goatName) {
 
@@ -273,15 +257,15 @@ public class NavManageGoals extends Fragment {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("You are going to confirm " + goatName + ". \n Are you sure?").setPositiveButton("Yes", dialogClickListener)
-                .setNegativeButton("No", dialogClickListener).show();
+        builder.setMessage(getString(R.string.confirm_message) +"\n" + goatName).setPositiveButton(getString(R.string.yes), dialogClickListener)
+                .setNegativeButton(getString(R.string.no), dialogClickListener).show();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Manage Goals");
+        getActivity().setTitle(getString(R.string.goals_manager));
     }
 
     private void changeFragment(int fragmentId) {

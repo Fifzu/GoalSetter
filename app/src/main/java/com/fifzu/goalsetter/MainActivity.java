@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity
     private ArrayList<Goal> goalList;
     private int mood;
     private LocalDateTime lastUpdated;
+    private static int MAX_MOOD = 240;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,10 +94,6 @@ public class MainActivity extends AppCompatActivity
                 fragment = new NavManageGoals();
                 break;
 
-            case R.id.nav_placeholder:
-                fragment = new NavTemplate();
-                break;
-
             case R.id.nav_infos:
                 fragment = new NavTemplate();
                 break;
@@ -127,7 +125,7 @@ public class MainActivity extends AppCompatActivity
             case 0:
                 listToCompare = getShortGoalList();
                 if(listToCompare.size()>3){
-                    throw new IllegalArgumentException("Too many Goals defined. Delete one!");
+                    throw new IllegalArgumentException(getString(R.string.too_many_goals));
                 } else {
                     this.goalList.add(goal);
                 }
@@ -135,7 +133,7 @@ public class MainActivity extends AppCompatActivity
             case 1:
                 listToCompare = getMediumGoalList();
                 if(listToCompare.size()>2){
-                    throw new IllegalArgumentException("Too many Goals defined. Delete one!");
+                    throw new IllegalArgumentException(getString(R.string.too_many_goals));
                 } else {
                     this.goalList.add(goal);
                 }
@@ -143,7 +141,7 @@ public class MainActivity extends AppCompatActivity
             case 2:
                 listToCompare = getLongGoalList();
                 if(listToCompare.size()>1){
-                    throw new IllegalArgumentException("Too many Goals defined. Delete one!");
+                    throw new IllegalArgumentException(getString(R.string.too_many_goals));
                 } else {
                     this.goalList.add(goal);
                 }
@@ -158,7 +156,10 @@ public class MainActivity extends AppCompatActivity
             lastUpdated= LocalDateTime.now();
         }
         int daysSinceUpdate = calculateDaysSinceUpdate();
-        mood = mood - (daysSinceUpdate*3);
+
+        int newMood = mood - (daysSinceUpdate*3);
+        mood = Math.max(newMood,-1*MAX_MOOD);
+
         deleteOldGoals();
 
         lastUpdated = LocalDateTime.now();
@@ -168,8 +169,6 @@ public class MainActivity extends AppCompatActivity
         boolean updated = false;
         int daysSinceUpdate =0;
         LocalDateTime dateToday = LocalDateTime.now();
-
-
 
         updated = !isDayDifference(lastUpdated,dateToday);
 
@@ -223,7 +222,8 @@ public class MainActivity extends AppCompatActivity
         for (int i = 0;i <goalList.size();i++){
             if(goalList.get(i).getUniqueID()==id){
 
-                mood = mood + goalList.get(i).getValue();
+                int newMood =  mood + goalList.get(i).getValue();
+                mood = Math.min(newMood,MAX_MOOD);
 
                 goalList.remove(i);
                 break;

@@ -1,5 +1,7 @@
 package com.fifzu.goalsetter;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +17,10 @@ public class NavMood extends Fragment{
     TextView tvStatusName;
     ImageView ivMood;
     TextView tvStatusMood;
+
+    private int[] progressBarColors = {
+            Color.WHITE,Color.RED,Color.BLUE,Color.GREEN,Color.YELLOW,Color.LTGRAY
+    };
 
     private static Integer[] moodDatabase = {R.drawable.ic_not_interested_3x,
             R.drawable.ic_sentiment_very_dissatisfied_3x,R.drawable.ic_sentiment_dissatisfied_3x,
@@ -38,7 +44,7 @@ public class NavMood extends Fragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Mood Manager");
+        getActivity().setTitle(getString(R.string.mood_manager));
     }
 
     private void updateStatus(int s) {
@@ -49,9 +55,16 @@ public class NavMood extends Fragment{
         tvStatusMood.setText(Integer.toString(mood));
 
         moodBar.setProgress(s);
-        ivMood.setImageResource(moodDatabase[s]);
+        double dbMappedMood=  Math.ceil((double)s/2);
 
-        tvStatusName.setText( getResources().getStringArray(R.array.mood_array)[s]);
+        int mappedMood = (int) dbMappedMood;
+
+        int color = progressBarColors[mappedMood];
+        moodBar.setProgressTintList(ColorStateList.valueOf(color));
+
+        ivMood.setImageResource(moodDatabase[mappedMood]);
+
+        tvStatusName.setText( getResources().getStringArray(R.array.mood_array)[mappedMood]);
     }
 
     private int calculateStatus() {
@@ -59,13 +72,23 @@ public class NavMood extends Fragment{
         MainActivity myActivity = (MainActivity) getActivity();
         int mood = myActivity.getMood();
 
-        if(mood>200) {
-            status=5;
+        if(mood>180) {
+            status=10;
+        } else if (mood>120) {
+            status = 9;
+        } else if (mood>80) {
+            status = 8;
         } else if (mood>40) {
-            status = 4;
+            status = 7;
+        } else if (mood>0) {
+            status = 6;
         } else if (mood>-40) {
+            status = 5;
+        } else if (mood>-80) {
+            status = 4;
+        } else if (mood>-120) {
             status = 3;
-        } else if (mood>-200) {
+        } else if (mood>-180) {
             status = 2;
         } else {
             status = 1;

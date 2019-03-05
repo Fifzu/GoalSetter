@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Short Goals" />
+                android:text="@string/short_goals" />
 
             <LinearLayout
                 android:id="@+id/manageGoalsShortHolderLayout"
@@ -47,7 +47,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/shortGoal0Name"
@@ -55,7 +55,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Name" />
+                        android:text="@string/name" />
 
                     <TextView
                         android:id="@+id/shortGoal0Valid"
@@ -63,7 +63,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Valid" />
+                        android:text="@string/valid_until" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -78,7 +78,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/shortGoal1Name"
@@ -86,7 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Name" />
+                        android:text="@string/name" />
 
                     <TextView
                         android:id="@+id/shortGoal1Valid"
@@ -94,7 +94,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Valid" />
+                        android:text="@string/valid_until" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -109,7 +109,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/shortGoal2Name"
@@ -117,7 +117,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Name" />
+                        android:text="@string/name" />
 
                     <TextView
                         android:id="@+id/shortGoal2Valid"
@@ -125,7 +125,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Valid" />
+                        android:text="@string/valid_until" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -140,7 +140,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/shortGoal3Name"
@@ -148,7 +148,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Name" />
+                        android:text="@string/name" />
 
                     <TextView
                         android:id="@+id/shortGoal3Valid"
@@ -156,7 +156,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Valid" />
+                        android:text="@string/valid_until" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -175,7 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Medium Goals" />
+                android:text="@string/medium_goals" /> />
 
             <LinearLayout
                 android:id="@+id/manageGoalsMediumHolderLayout"
@@ -196,7 +196,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/mediumGoal0Name"
@@ -204,7 +204,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Name" />
+                        android:text="@string/name" />
 
                     <TextView
                         android:id="@+id/mediumGoal0Valid"
@@ -212,7 +212,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Valid" />
+                        android:text="@string/valid_until" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -227,7 +227,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/mediumGoal1Name"
@@ -235,7 +235,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Name" />
+                        android:text="@string/name" />
 
                     <TextView
                         android:id="@+id/mediumGoal1Valid"
@@ -243,7 +243,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Valid" />
+                        android:text="@string/valid_until" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -258,7 +258,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/mediumGoal2Name"
@@ -266,7 +266,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Name" />
+                        android:text="@string/name" />
 
                     <TextView
                         android:id="@+id/mediumGoal2Valid"
@@ -274,7 +274,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Valid" />
+                        android:text="@string/valid_until" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -293,7 +293,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Long Goals" />
+                android:text="@string/long_goals" />
 
             <LinearLayout
                 android:id="@+id/manageGoalsLongHolderLayout"
@@ -314,7 +314,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/longGoal0Name"
@@ -322,7 +322,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Name" />
+                        android:text="@string/name" />
 
                     <TextView
                         android:id="@+id/longGoal0Valid"
@@ -330,7 +330,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Valid" />
+                        android:text="@string/valid_until" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -345,7 +345,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/longGoal1Name"
@@ -353,7 +353,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Name" />
+                        android:text="@string/name" />
 
                     <TextView
                         android:id="@+id/longGoal1Valid"
@@ -361,7 +361,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Valid" />
+                        android:text="@string/valid_until" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -375,7 +375,7 @@
             android:layout_gravity="center_vertical"
             android:imeOptions="actionSend"
             android:tag="add_goal_button"
-            android:text="Add new Goal" />
+            android:text="@string/add_new_goal" />
     </LinearLayout>
 
 </LinearLayout>
