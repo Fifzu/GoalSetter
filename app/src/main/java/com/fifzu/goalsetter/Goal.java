@@ -13,6 +13,7 @@ public class Goal {
     private Integer value;
     private Integer goalClass;
     private Integer goalIcon;
+    private Integer uniqueID;
 
     private static Integer[] goalDatabase = {R.drawable.ic_attach_money,
             R.drawable.ic_school,R.drawable.ic_group,
@@ -82,6 +83,14 @@ public class Goal {
     public void setGoalClass(Integer goalClass) {
         this.goalClass = goalClass;
         goalIcon = goalDatabase[goalClass];
+    }
+
+    public Integer getUniqueID() {
+        return uniqueID;
+    }
+
+    public void setUniqueID(Integer uniqueID) {
+        this.uniqueID = uniqueID;
     }
 
     public Integer getGoalIcon() {

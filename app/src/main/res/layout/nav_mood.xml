@@ -44,11 +44,20 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/button"
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Current Mood:"
+                    android:textAllCaps="false"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/statusMood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -58,7 +67,7 @@
                     android:textAllCaps="false"
                     android:textStyle="bold" />
                 <TextView
-                    android:id="@+id/statudID"
+                    android:id="@+id/statusID"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

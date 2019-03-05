@@ -12,6 +12,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -151,7 +153,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void updateStatus() {
-        boolean platzhalter=true;
 
         if (lastUpdated==null){
             lastUpdated= LocalDateTime.now();
@@ -207,6 +208,29 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
+    public void deleteGoalWithID(int id) {
+        for (int i = 0;i <goalList.size();i++){
+            if(goalList.get(i).getUniqueID()==id){
+                goalList.remove(i);
+                break;
+            }
+        }
+    }
+
+
+    public void confirmGoalWithID(int id) {
+        for (int i = 0;i <goalList.size();i++){
+            if(goalList.get(i).getUniqueID()==id){
+
+                mood = mood + goalList.get(i).getValue();
+
+                goalList.remove(i);
+                break;
+            }
+        }
+    }
+
 
     public ArrayList <Goal> getShortGoalList(){
         ArrayList<Goal> listToSend = new ArrayList<Goal>();
@@ -274,6 +298,26 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public int getUniqueId() {
+
+        boolean found = true;
+
+        int id = 0;
+        while (found) {
+
+            found = false;
+            for (int i = 0; i < goalList.size(); i++) {
+
+                if (goalList.get(i).getUniqueID() == id) {
+                    id++;
+                    found = true;
+                    break;
+                }
+            }
+        }
+        return id;
+    }
+
     private void loadData() {
         Gson gson = new Gson();
         SharedPreferences shref;
@@ -294,6 +338,7 @@ public class MainActivity extends AppCompatActivity
 
         lastUpdated =  LocalDateTime.ofInstant(Instant.ofEpochSecond(l),
                 TimeZone.getDefault().toZoneId());
+
     }
 
 }

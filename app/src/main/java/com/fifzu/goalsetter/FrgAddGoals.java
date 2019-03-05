@@ -1,24 +1,22 @@
 package com.fifzu.goalsetter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 public class FrgAddGoals extends Fragment{
+
+    private MainActivity mainActivity;
 
     @Nullable
     @Override
@@ -53,6 +51,7 @@ public class FrgAddGoals extends Fragment{
                                         Integer intGoalType = l.intValue();
                                         l = gsGoalClass.getSelectedItemId();
                                         Integer intGoalClass = l.intValue();
+
                                         saveGoal(goalName, intGoalType, intGoalClass);
                                     }
                                 }
@@ -62,32 +61,29 @@ public class FrgAddGoals extends Fragment{
         View.OnFocusChangeListener ofcListener = new MyFocusChangeListener();
         editText.setOnFocusChangeListener(ofcListener);
 
-
-
         return view;
     }
 
     private void saveGoal(String goalName, Integer goalType, Integer goalClass) {
+
+        mainActivity = (MainActivity) getActivity();
+        int uniqueId =  mainActivity.getUniqueId();
         Goal goal = new Goal();
 
         goal.setName(goalName);
         goal.setDuration(goalType);
         goal.setFixed(false);
         goal.setGoalClass(goalClass);
-
+        goal.setUniqueID(uniqueId);
         MainActivity mainActivity = (MainActivity) getActivity();
         try {
             mainActivity.addGoal(goal);
             mainActivity.displayFragment(R.id.nav_manage_goals);
+
         } catch (IllegalArgumentException e) {
             Toast.makeText(getContext(),e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
-    }
-
-    private static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 
     @Override

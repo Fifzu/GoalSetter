@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,6 +14,8 @@ public class NavMood extends Fragment{
     ProgressBar moodBar;
     TextView tvStatusName;
     ImageView ivMood;
+    TextView tvStatusMood;
+
     private static Integer[] moodDatabase = {R.drawable.ic_not_interested_3x,
             R.drawable.ic_sentiment_very_dissatisfied_3x,R.drawable.ic_sentiment_dissatisfied_3x,
             R.drawable.ic_sentiment_neutral_3x,R.drawable.ic_sentiment_satisfied_3x,R.drawable.ic_sentiment_very_satisfied_3x};
@@ -25,31 +26,12 @@ public class NavMood extends Fragment{
         View view =  inflater.inflate(R.layout.nav_mood, container, false);
         int status =calculateStatus();
         moodBar = view.findViewById(R.id.mood_bar);
-        tvStatusName = view.findViewById(R.id.statudID);
+        tvStatusName = view.findViewById(R.id.statusID);
         ivMood = view.findViewById(R.id.moodImage);
+        tvStatusMood = view.findViewById(R.id.statusMood);
 
         updateStatus(status);
-
-
-        Button btn = view.findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
-                                       public void onClick(View v) {
-
-                                       }
-                                   }
-        );
-        Button btn2 = view.findViewById(R.id.button2);
-        btn2.setOnClickListener(new View.OnClickListener() {
-                                       public void onClick(View v) {
-
-                                       }
-                                   }
-        );
-
-
-
-
-            return view;
+        return view;
         }
 
     @Override
@@ -60,6 +42,12 @@ public class NavMood extends Fragment{
     }
 
     private void updateStatus(int s) {
+
+        MainActivity myActivity = (MainActivity) getActivity();
+        int mood = myActivity.getMood();
+
+        tvStatusMood.setText(Integer.toString(mood));
+
         moodBar.setProgress(s);
         ivMood.setImageResource(moodDatabase[s]);
 
@@ -85,5 +73,4 @@ public class NavMood extends Fragment{
 
         return status;
     }
-
 }
