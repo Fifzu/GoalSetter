@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -23,9 +24,10 @@
 
             <TextView
                 android:id="@+id/shortTextView"
+                style="@style/InputLabel"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="@string/short_goals" />
 
             <LinearLayout
@@ -33,26 +35,27 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/shortGoal0"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/small_border"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/shortGoal0Image"
-                        android:layout_width="fill_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/shortGoal0Name"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/name" />
@@ -60,7 +63,7 @@
                     <TextView
                         android:id="@+id/shortGoal0Valid"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/valid_until" />
@@ -68,22 +71,23 @@
 
                 <LinearLayout
                     android:id="@+id/shortGoal1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/small_border"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/shortGoal1Image"
-                        android:layout_width="fill_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/shortGoal1Name"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/name" />
@@ -91,7 +95,7 @@
                     <TextView
                         android:id="@+id/shortGoal1Valid"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/valid_until" />
@@ -99,22 +103,23 @@
 
                 <LinearLayout
                     android:id="@+id/shortGoal2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/small_border"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/shortGoal2Image"
-                        android:layout_width="fill_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/shortGoal2Name"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/name" />
@@ -122,7 +127,7 @@
                     <TextView
                         android:id="@+id/shortGoal2Valid"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/valid_until" />
@@ -130,22 +135,23 @@
 
                 <LinearLayout
                     android:id="@+id/shortGoal3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/small_border"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/shortGoal3Image"
-                        android:layout_width="fill_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/shortGoal3Name"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/name" />
@@ -153,7 +159,7 @@
                     <TextView
                         android:id="@+id/shortGoal3Valid"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/valid_until" />
@@ -172,9 +178,10 @@
 
             <TextView
                 android:id="@+id/mediumTextView"
+                style="@style/InputLabel"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="@string/medium_goals" /> />
 
             <LinearLayout
@@ -182,26 +189,27 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/mediumGoal0"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/small_border"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/mediumGoal0Image"
-                        android:layout_width="fill_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/mediumGoal0Name"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/name" />
@@ -209,7 +217,7 @@
                     <TextView
                         android:id="@+id/mediumGoal0Valid"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/valid_until" />
@@ -217,22 +225,23 @@
 
                 <LinearLayout
                     android:id="@+id/mediumGoal1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/small_border"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/mediumGoal1Image"
-                        android:layout_width="fill_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/mediumGoal1Name"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/name" />
@@ -240,7 +249,7 @@
                     <TextView
                         android:id="@+id/mediumGoal1Valid"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/valid_until" />
@@ -248,22 +257,23 @@
 
                 <LinearLayout
                     android:id="@+id/mediumGoal2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/small_border"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/mediumGoal2Image"
-                        android:layout_width="fill_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/mediumGoal2Name"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/name" />
@@ -271,7 +281,7 @@
                     <TextView
                         android:id="@+id/mediumGoal2Valid"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/valid_until" />
@@ -290,9 +300,10 @@
 
             <TextView
                 android:id="@+id/longTextView"
+                style="@style/InputLabel"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="@string/long_goals" />
 
             <LinearLayout
@@ -300,26 +311,27 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/longGoal0"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/small_border"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/longGoal0Image"
-                        android:layout_width="fill_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/longGoal0Name"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/name" />
@@ -327,7 +339,7 @@
                     <TextView
                         android:id="@+id/longGoal0Valid"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/valid_until" />
@@ -335,22 +347,23 @@
 
                 <LinearLayout
                     android:id="@+id/longGoal1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/small_border"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/longGoal1Image"
-                        android:layout_width="fill_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/ic_not_interested" />
 
                     <TextView
                         android:id="@+id/longGoal1Name"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/name" />
@@ -358,7 +371,7 @@
                     <TextView
                         android:id="@+id/longGoal1Valid"
                         style="@style/InputLabel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="@string/valid_until" />
@@ -378,4 +391,4 @@
             android:text="@string/add_new_goal" />
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

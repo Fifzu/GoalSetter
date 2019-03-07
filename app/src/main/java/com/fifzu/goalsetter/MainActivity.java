@@ -157,22 +157,19 @@ public class MainActivity extends AppCompatActivity
         }
         int daysSinceUpdate = calculateDaysSinceUpdate();
 
-        int newMood = mood - (daysSinceUpdate*3);
-        mood = Math.max(newMood,-1*MAX_MOOD);
-
-        deleteOldGoals();
-
-        lastUpdated = LocalDateTime.now();
+        if (daysSinceUpdate>0) {
+            int newMood = mood - (daysSinceUpdate*3);
+            mood = Math.max(newMood,-1*MAX_MOOD);
+            deleteOldGoals();
+            lastUpdated = LocalDateTime.now();
+        }
     }
 
     private int calculateDaysSinceUpdate(){
-        boolean updated = false;
         int daysSinceUpdate =0;
         LocalDateTime dateToday = LocalDateTime.now();
 
-        updated = !isDayDifference(lastUpdated,dateToday);
-
-        if (!updated) {
+        if (isDayDifference(lastUpdated,dateToday)) {
             daysSinceUpdate = getDayDifference(lastUpdated, dateToday);
         }
         return daysSinceUpdate;
