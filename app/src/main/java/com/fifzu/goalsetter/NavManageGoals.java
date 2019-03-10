@@ -10,10 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -25,6 +25,10 @@ public class NavManageGoals extends Fragment {
     private MainActivity mainActivity;
     LinearLayout llLayout;
 
+    ListView shortListView;
+    ListView mediumListView;
+    ListView longListView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,6 +39,25 @@ public class NavManageGoals extends Fragment {
         shortGoalList = mainActivity.getShortGoalList();
         mediumGoalList = mainActivity.getMediumGoalList();
         longGoalList = mainActivity.getLongGoalList();
+
+        shortListView = view.findViewById(R.id.shortListview);
+        shortListView.setAdapter(new GoalAdapter(getContext(),shortGoalList,mainActivity));
+
+        mediumListView = view.findViewById(R.id.middleListview);
+        mediumListView.setAdapter(new GoalAdapter(getContext(),mediumGoalList,mainActivity));
+
+        longListView = view.findViewById(R.id.longListview);
+        longListView.setAdapter(new GoalAdapter(getContext(),longGoalList,mainActivity));
+
+
+        justifyListViewHeightBasedOnChildren(shortListView);
+        justifyListViewHeightBasedOnChildren(mediumListView);
+        justifyListViewHeightBasedOnChildren(longListView);
+
+
+        /*
+
+
         llLayout = new LinearLayout((getContext()));
 
 
@@ -203,6 +226,8 @@ public class NavManageGoals extends Fragment {
             });
         }
 
+        */
+
         Button btnAddGoal = view.findViewById(R.id.manageGoals_AddButton);
         btnAddGoal.setOnClickListener(new View.OnClickListener() {
                                           public void onClick(View v) {
@@ -214,51 +239,29 @@ public class NavManageGoals extends Fragment {
         return view;
     }
 
+    public static void justifyListViewHeightBasedOnChildren (ListView listView) {
 
-    private void deleteGoal(final int index, String goatName) {
+        ListAdapter adapter = listView.getAdapter();
 
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which){
-                    case DialogInterface.BUTTON_POSITIVE:
-                        mainActivity.deleteGoalWithID(index);
-                        changeFragment(R.id.nav_manage_goals);
-                        break;
+        if (adapter == null) {
+            return;
+        }
+        ViewGroup vg = listView;
+        int totalHeight = 0;
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View listItem = adapter.getView(i, null, vg);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
 
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        //No button clicked
-                        break;
-                }
-            }
-        };
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage(getString(R.string.delete_message) +"\n" + goatName).setPositiveButton(getString(R.string.yes), dialogClickListener)
-                .setNegativeButton(getString(R.string.no), dialogClickListener).show();
+        ViewGroup.LayoutParams par = listView.getLayoutParams();
+        par.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        listView.setLayoutParams(par);
+        listView.requestLayout();
     }
-    private void confirmGoal(final int index, String goatName) {
 
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which){
-                    case DialogInterface.BUTTON_POSITIVE:
-                        mainActivity.confirmGoalWithID(index);
-                        changeFragment(R.id.nav_manage_goals);
-                        break;
 
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        //No button clicked
-                        break;
-                }
-            }
-        };
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage(getString(R.string.confirm_message) +"\n" + goatName).setPositiveButton(getString(R.string.yes), dialogClickListener)
-                .setNegativeButton(getString(R.string.no), dialogClickListener).show();
-    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
