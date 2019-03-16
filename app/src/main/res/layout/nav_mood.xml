@@ -1,40 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:id="@+id/nav_mood">
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"   >
 
-    <LinearLayout
-    android:id="@+id/manageMoodLayout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center"
-    android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/manageMoodTopLayout"
-            android:layout_width="fill_parent"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_mood"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/shortTextView0"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Mood Manager"
-                android:textAllCaps="false"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+            android:text="@string/actualMood"
+            android:textAllCaps="false"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/manageMoodMiddleLayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+
             android:orientation="horizontal">
 
             <LinearLayout
@@ -51,13 +49,13 @@
                     android:text="@string/current_mood"
                     android:textAllCaps="false"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/statusMood"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:textAllCaps="false"
-                    android:textStyle="bold" />
+                    android:textAllCaps="false" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -66,19 +64,19 @@
                     android:text="@string/current_status"
                     android:textAllCaps="false"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/statusID"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:textAllCaps="false"
-                    android:textStyle="bold" />
+                    android:textAllCaps="false" />
+
                 <ImageView
                     android:id="@+id/moodImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_sentiment_neutral_3x" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -92,10 +90,9 @@
                     android:id="@+id/mood_bar"
                     style="@style/Widget.ProgressBar.Vertical"
                     android:layout_width="12dip"
-                    android:layout_height="300dip"
+                    android:layout_height="200dip"
                     android:max="10"
                     android:min="0" />
-
             </LinearLayout>
         </LinearLayout>
 
@@ -106,6 +103,63 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/nextGoal"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/medium_border"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/nextGoalImage"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_not_interested" />
+
+                <LinearLayout
+                    android:id="@+id/nextGoalLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/nextGoalName"
+                        style="@style/InputLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/name" />
+
+                    <TextView
+                        android:id="@+id/nextGoalValid"
+                        style="@style/InputLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/valid_until" />
+
+                    <TextView
+                        android:id="@+id/validUntilDays"
+                        style="@style/InputLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xxxx" />
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
+
+
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
+</RelativeLayout>

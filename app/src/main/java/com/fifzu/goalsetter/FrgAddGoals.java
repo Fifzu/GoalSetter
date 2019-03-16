@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import static java.lang.Integer.parseInt;
+
 public class FrgAddGoals extends Fragment{
 
     private MainActivity mainActivity;
@@ -42,6 +44,7 @@ public class FrgAddGoals extends Fragment{
         gsGoalClass.setAdapter(saGoalClass);
 
         final EditText etGoalName = view.findViewById(R.id.goalName);
+        final EditText etGoalCount = view.findViewById(R.id.goalCount);
 
         Button btnSave = view.findViewById(R.id.btn_saveGoal);
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -51,8 +54,10 @@ public class FrgAddGoals extends Fragment{
                                         Integer intGoalType = l.intValue();
                                         l = gsGoalClass.getSelectedItemId();
                                         Integer intGoalClass = l.intValue();
+                                        Integer intGoalCount = parseInt(etGoalCount.getText().toString());
 
-                                        saveGoal(goalName, intGoalType, intGoalClass);
+
+                                        saveGoal(goalName, intGoalType, intGoalClass,intGoalCount);
                                     }
                                 }
         );
@@ -62,7 +67,7 @@ public class FrgAddGoals extends Fragment{
         return view;
     }
 
-    private void saveGoal(String goalName, Integer goalType, Integer goalClass) {
+    private void saveGoal(String goalName, Integer goalType, Integer goalClass, Integer intGoalCount) {
 
         mainActivity = (MainActivity) getActivity();
         int uniqueId =  mainActivity.getUniqueId();
@@ -73,6 +78,7 @@ public class FrgAddGoals extends Fragment{
         goal.setFixed(false);
         goal.setGoalClass(goalClass);
         goal.setUniqueID(uniqueId);
+        goal.setCount(intGoalCount);
         MainActivity mainActivity = (MainActivity) getActivity();
         try {
             mainActivity.addGoal(goal);

@@ -17,8 +17,10 @@
     <string name="long_goals">Lange Ziele</string>
     <string name="add_new_goal">Neues Ziel</string>
     <string name="name">Name</string>
+    <string name="count">Anzahl</string>
     <string name="valid_until">Gültig bis</string>
     <string name="goal_name">Zielbezeichnung</string>
+    <string name="goal_count">Zielanzahl</string>
     <string name="goal_type">Ziellänge</string>
     <string name="goal_class">Zielart</string>
     <string name="save_goal">Ziel speichern</string>
@@ -29,6 +31,8 @@
     <string name="no">Nein</string>
     <string name="confirm">Ziel bestätigen</string>
     <string name="delete">Ziel löschen</string>
+    <string name="nextGoal">Nächstes Ziel</string>
+    <string name="actualMood">Laune</string>
 
     <string-array name="goalsType_array">
         <item>Kurz</item>
@@ -50,5 +54,4 @@
         <item>Gut</item>
         <item>Wunderbar</item>
     </string-array>
-
 </resources>
