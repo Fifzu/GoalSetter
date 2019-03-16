@@ -18,12 +18,15 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity
@@ -33,7 +36,6 @@ public class MainActivity extends AppCompatActivity
     private int mood;
     private LocalDateTime lastUpdated;
     private static int MAX_MOOD = 240;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +57,14 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         loadData();
-        displayFragment(R.id.nav_mood);
+
+        if (savedInstanceState == null) {
+            MenuItem item =  navigationView.getMenu().getItem(0);
+            item.setChecked(true);
+            onNavigationItemSelected(item);
+        }
+
     }
 
     @Override
@@ -175,12 +182,22 @@ public class MainActivity extends AppCompatActivity
         return daysSinceUpdate;
     }
 
-    private int getDayDifference(LocalDateTime date0, LocalDateTime dateTime1) {
+    public int getDayDifference(LocalDateTime date0, LocalDateTime dateTime1) {
         Duration dur = Duration.between(date0, dateTime1);
         int daysDif=0;
         Long days =  dur.toDays();
         daysDif =days.intValue();
         return daysDif;
+    }
+
+    public String formatDuration(LocalDateTime date0, LocalDateTime dateTime1) {
+        Duration duration  = Duration.between(date0, dateTime1);
+
+        String hms = String.format("%d d, %d h, %02d m",
+                duration.toDays(),
+                duration.toHours()% 24,
+                duration.toMinutes()% 60);
+        return hms;
     }
 
     private boolean isDayDifference(LocalDateTime date0, LocalDateTime dateTime1) {
@@ -217,16 +234,19 @@ public class MainActivity extends AppCompatActivity
     public void confirmGoalWithID(int id) {
         for (int i = 0;i <goalList.size();i++){
             if(goalList.get(i).getUniqueID()==id){
+                if(goalList.get(i).getCount()<2) {
+                    int newMood = mood + goalList.get(i).getValue();
+                    mood = Math.min(newMood, MAX_MOOD);
 
-                int newMood =  mood + goalList.get(i).getValue();
-                mood = Math.min(newMood,MAX_MOOD);
-
-                goalList.remove(i);
+                    goalList.remove(i);
+                } else {
+                    Integer newCount = goalList.get(i).getCount()-1;
+                    goalList.get(i).setCount(newCount);
+                }
                 break;
             }
         }
     }
-
 
     public ArrayList <Goal> getShortGoalList(){
         ArrayList<Goal> listToSend = new ArrayList<Goal>();
@@ -291,7 +311,6 @@ public class MainActivity extends AppCompatActivity
         editor.remove("lastUpdated").commit();
         editor.putLong("lastUpdated",lastUpdated.atZone(ZoneId.systemDefault()).toEpochSecond());
         editor.commit();
-
     }
 
     public int getUniqueId() {
@@ -332,5 +351,24 @@ public class MainActivity extends AppCompatActivity
 
         lastUpdated =  LocalDateTime.ofInstant(Instant.ofEpochSecond(l),
                 TimeZone.getDefault().toZoneId());
+    }
+
+    public Goal getNextGoal() {
+
+        Goal nextGoal = new Goal();
+
+        nextGoal.setName("No Goal defined");
+
+
+        if(goalList.size()>0) {
+            nextGoal = goalList.get(0);
+
+            for(int i =0; i< goalList.size(); i++) {
+                if(goalList.get(i).getValidUntilDate().isBefore(nextGoal.getValidUntilDate())) {
+                    nextGoal = goalList.get(i);
+                }
+            }
+        }
+        return nextGoal;
     }
 }

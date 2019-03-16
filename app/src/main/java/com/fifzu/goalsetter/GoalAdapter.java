@@ -55,7 +55,6 @@ class GoalAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
         View vi = convertView;
         if (vi == null)
             vi = inflater.inflate(R.layout.goal_row, null);
@@ -66,9 +65,11 @@ class GoalAdapter extends BaseAdapter {
         TextView goalName = vi.findViewById(R.id.goalName);
         goalName.setText(goalList.get(position).getName());
 
+        TextView goalCount = vi.findViewById(R.id.goalCount);
+        goalCount.setText(goalList.get(position).getCount().toString());
+
         TextView goalValid = vi.findViewById(R.id.goalValid);
         goalValid.setText(goalList.get(position).getValidUntil());
-
 
         LinearLayout llLayout = vi.findViewById(R.id.goalDescription);
 
@@ -98,13 +99,10 @@ class GoalAdapter extends BaseAdapter {
             }
         });
 
-
         return vi;
     }
+
     private void deleteGoal(final int index, String goatName, final MainActivity myActivity) {
-
-
-
 
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -126,6 +124,7 @@ class GoalAdapter extends BaseAdapter {
         builder.setMessage(context.getString(R.string.delete_message) +"\n" + goatName).setPositiveButton(context.getString(R.string.yes), dialogClickListener)
                 .setNegativeButton(context.getString(R.string.no), dialogClickListener).show();
     }
+
     private void confirmGoal(final int index, String goatName, final MainActivity myActivity) {
 
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

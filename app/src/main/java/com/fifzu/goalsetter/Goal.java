@@ -14,6 +14,7 @@ public class Goal {
     private Integer goalClass;
     private Integer goalIcon;
     private Integer uniqueID;
+    private Integer count;
 
     private static Integer[] goalDatabase = {R.drawable.ic_attach_money,
             R.drawable.ic_school,R.drawable.ic_group,
@@ -95,5 +96,18 @@ public class Goal {
 
     public Integer getGoalIcon() {
         return goalIcon;
+    }
+
+    public Integer getCount() {
+        if (count!=null) {
+            return count;
+        } else {
+            count = 1;
+            return count;
+        }
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }
