@@ -21,8 +21,10 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity
@@ -31,7 +33,12 @@ public class MainActivity extends AppCompatActivity
     private ArrayList<Goal> goalList;
     private int mood;
     private LocalDateTime lastUpdated;
+    private LocalDateTime daysSinceStart;
     private static int MAX_MOOD = 240;
+
+    private int savedStatistics[];
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,12 +104,8 @@ public class MainActivity extends AppCompatActivity
                 fragment = new NavManageGoals();
                 break;
 
-            case R.id.nav_infos:
-                fragment = new NavTemplate();
-                break;
-
-            case R.id.nav_settings:
-                fragment = new NavTemplate();
+            case R.id.nav_info:
+                fragment = new NavInfo();
                 break;
         }
 
@@ -157,6 +160,9 @@ public class MainActivity extends AppCompatActivity
 
         if (lastUpdated==null){
             lastUpdated= LocalDateTime.now();
+        }
+        if (daysSinceStart==null){
+            daysSinceStart= LocalDateTime.now();
         }
         int daysSinceUpdate = calculateDaysSinceUpdate();
 
@@ -233,6 +239,9 @@ public class MainActivity extends AppCompatActivity
                 if(goalList.get(i).getCount()<2) {
                     int newMood = mood + goalList.get(i).getValue();
                     mood = Math.min(newMood, MAX_MOOD);
+
+                    savedStatistics[goalList.get(i).getGoalType()]++;
+                    savedStatistics[goalList.get(i).getGoalClass()+3]++;
 
                     goalList.remove(i);
                 } else {
@@ -326,6 +335,15 @@ public class MainActivity extends AppCompatActivity
         String json = gson.toJson(goalList);
         editor = shref.edit();
 
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < savedStatistics.length; i++) {
+            str.append(savedStatistics[i]).append(",");
+        }
+
+        editor.remove("savedStatistics").commit();
+        editor.putString("savedStatistics", str.toString());
+        editor.commit();
+
         editor.remove("goalList").commit();
         editor.putString("goalList", json);
         editor.commit();
@@ -336,6 +354,9 @@ public class MainActivity extends AppCompatActivity
 
         editor.remove("lastUpdated").commit();
         editor.putLong("lastUpdated",lastUpdated.atZone(ZoneId.systemDefault()).toEpochSecond());
+        editor.commit();
+        editor.remove("daysSinceStart").commit();
+        editor.putLong("daysSinceStart",daysSinceStart.atZone(ZoneId.systemDefault()).toEpochSecond());
         editor.commit();
     }
 
@@ -384,9 +405,20 @@ public class MainActivity extends AppCompatActivity
 
         mood = shref.getInt("mood",0);
         long l = (shref.getLong("lastUpdated",LocalDateTime.now().atZone(ZoneId.systemDefault()).toEpochSecond()));
-
         lastUpdated =  LocalDateTime.ofInstant(Instant.ofEpochSecond(l),
                 TimeZone.getDefault().toZoneId());
+
+
+        l = (shref.getLong("daysSinceStart",LocalDateTime.now().atZone(ZoneId.systemDefault()).toEpochSecond()));
+        daysSinceStart =  LocalDateTime.ofInstant(Instant.ofEpochSecond(l),
+                TimeZone.getDefault().toZoneId());
+
+        String savedString = shref.getString("savedStatistics", "0,0,0,0,0,0,0,0");
+        StringTokenizer st = new StringTokenizer(savedString, ",");
+        savedStatistics = new int[8];
+        for (int i = 0; i < 8; i++) {
+            savedStatistics[i] = Integer.parseInt(st.nextToken());
+        }
     }
 
     public Goal getNextGoal() {
@@ -407,4 +439,23 @@ public class MainActivity extends AppCompatActivity
         }
         return nextGoal;
     }
+
+    public String getLastUpdated() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        String str = lastUpdated.format(formatter);
+        return str;
+    }
+    public String getDaysSinceStart() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        String str = daysSinceStart.format(formatter);
+        return str;
+    }
+
+
+
+    public int[] getSavedStatistics() {
+        return savedStatistics;
+    }
+
+
 }

@@ -9,6 +9,7 @@
     <string name="other">Sonstiges</string>
     <string name="mood_manager">Mood Manager</string>
     <string name="goals_manager">Goals Manager</string>
+    <string name="info">Infos</string>
     <string name="add_goals">Add Goals</string>
     <string name="edit_goal">Edit Goal</string>
     <string name="current_mood">Aktueller Punktestand:</string>
@@ -35,6 +36,21 @@
     <string name="edit">Ziel bearbeiten</string>
     <string name="nextGoal">Nächstes Ziel</string>
     <string name="actualMood">Laune</string>
+    <string name="general">Allgemeines</string>
+    <string name="solvedGoals">Gelöste Aufgaben</string>
+    <string name="AppNameDesc">Applikationsname:</string>
+    <string name="Version">Version:</string>
+    <string name="DaysSinceStart">Datum Start:</string>
+    <string name="LastUpdate">Letztes Update:</string>
+    <string name="solvedShorts">Kurzfristige Aufgaben:</string>
+    <string name="solvedMediums">Mittelfristige Aufgaben:</string>
+    <string name="solvedLong">Langfristige Aufgaben:</string>
+    <string name="solvedFortune">Vermögen:</string>
+    <string name="solvedKnowledge">Wissen:</string>
+    <string name="solvedReputation">Soziales:</string>
+    <string name="solvedRomance">Romantisch:</string>
+    <string name="solvedFamily">Familie:</string>
+    <string name="solvedTotal">Total:</string>
 
     <string-array name="goalsType_array">
         <item>Kurz</item>

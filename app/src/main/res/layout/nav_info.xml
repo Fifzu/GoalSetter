@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"   >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/general"
+            android:textAllCaps="false"
+            android:textStyle="bold" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/medium_border"
+            android:orientation="horizontal">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/AppNameDesc"
+                    android:textAllCaps="false"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Version"
+                    android:textAllCaps="false"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/DaysSinceStart"
+                    android:textAllCaps="false"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/LastUpdate"
+                    android:textAllCaps="false"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAppName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:text="@string/app_name"/>
+
+                <TextView
+                    android:id="@+id/tvVersion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Version"
+                    android:textAllCaps="false" />
+
+                <TextView
+                    android:id="@+id/tvDaysSinceStart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/DaysSinceStart"
+                    android:textAllCaps="false" />
+
+                <TextView
+                    android:id="@+id/tvLastUpdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/LastUpdate"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/solvedGoals"
+            android:textAllCaps="false"
+            android:textStyle="bold" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/medium_border"
+        android:orientation="horizontal">
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedTotal"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedShorts"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedMediums"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedLong"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedFortune"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedKnowledge"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedReputation"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedRomance"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedFamily"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedShorts"
+                android:textAllCaps="false" />
+            <TextView
+                android:id="@+id/tvLeftSolvedShorts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedShorts"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:id="@+id/tvLeftSolvedMediums"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedMediums"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:id="@+id/tvLeftSolvedLong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedLong"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:id="@+id/tvLeftSolvedFortune"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedFortune"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:id="@+id/tvLeftSolvedKnowledge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedKnowledge"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:id="@+id/tvLeftSolvedReputation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedReputation"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:id="@+id/tvLeftSolvedRomance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedRomance"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:id="@+id/tvLeftSolvedFamily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solvedFamily"
+                android:textAllCaps="false" />
+        </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

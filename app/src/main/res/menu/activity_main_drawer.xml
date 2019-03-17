@@ -12,18 +12,11 @@
             android:id="@+id/nav_manage_goals"
             android:icon="@drawable/ic_alarm_on"
             android:title="@string/goals_manager" />
+
+        <item
+            android:id="@+id/nav_info"
+            android:icon="@drawable/ic_copyright"
+            android:title="@string/info" />
     </group>
 
-    <item android:title="@string/other">
-        <menu>
-            <item
-                android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_build"
-                android:title="Einstellungen" />
-            <item
-                android:id="@+id/nav_infos"
-                android:icon="@drawable/ic_copyright"
-                android:title="Infos" />
-        </menu>
-    </item>
 </menu>

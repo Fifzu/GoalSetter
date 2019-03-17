@@ -11,7 +11,7 @@
         android:id="@+id/nav_manage_goals"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#f1f1f1"
+
         android:orientation="vertical">
         <LinearLayout
             android:id="@+id/manageGoalsLayout"
