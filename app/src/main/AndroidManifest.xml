@@ -3,9 +3,9 @@
     package="com.fifzu.goalsetter">
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_goalsetter"
+        android:icon="@mipmap/ic_main"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_goalsetter_round"
+        android:roundIcon="@mipmap/ic_main_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
