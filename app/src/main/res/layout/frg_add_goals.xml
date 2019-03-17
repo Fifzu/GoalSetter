@@ -63,16 +63,17 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/goal_count"
                 android:imeOptions="actionDone"
-                android:inputType="number"
+                android:inputType="numberSigned"
                 android:text="1" />
         </android.support.design.widget.TextInputLayout>
 
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
             android:id="@+id/btn_saveGoal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="@string/save_goal"
-            android:tag="save_button"/>
+            android:tag="save_button"
+            android:text="@string/save_goal" />
 
     </LinearLayout>
 </ScrollView>
