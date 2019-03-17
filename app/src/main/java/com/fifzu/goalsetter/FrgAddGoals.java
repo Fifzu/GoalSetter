@@ -26,6 +26,7 @@ public class FrgAddGoals extends Fragment{
 
         View view =  inflater.inflate(R.layout.frg_add_goals, container, false);
 
+
         final Spinner gsGoalType = view.findViewById(R.id.spin_goalType);
         ArrayAdapter<CharSequence> saGoalType = ArrayAdapter
                 .createFromResource(getActivity().getBaseContext(), R.array.goalsType_array,
@@ -34,6 +35,10 @@ public class FrgAddGoals extends Fragment{
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gsGoalType.setAdapter(saGoalType);
 
+        final Spinner gsGoalClass = view.findViewById(R.id.spin_goalClass);
+        GoalClassAdapter mCustomAdapter = new GoalClassAdapter(getContext());
+        gsGoalClass.setAdapter(mCustomAdapter);
+/*
 
         final Spinner gsGoalClass = view.findViewById(R.id.spin_goalClass);
         ArrayAdapter<CharSequence> saGoalClass = ArrayAdapter
@@ -42,7 +47,7 @@ public class FrgAddGoals extends Fragment{
         saGoalClass
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gsGoalClass.setAdapter(saGoalClass);
-
+*/
         final EditText etGoalName = view.findViewById(R.id.goalName);
         final EditText etGoalCount = view.findViewById(R.id.goalCount);
 

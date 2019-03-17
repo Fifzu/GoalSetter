@@ -21,7 +21,6 @@ public class FrgEditGoal extends Fragment{
     private Goal goal;
 
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,8 +47,6 @@ public class FrgEditGoal extends Fragment{
         final EditText etGoalCount = view.findViewById(R.id.goalCount);
         etGoalCount.setText(goal.getCount().toString());
 
-
-
         Button btnSave = view.findViewById(R.id.btn_editGoal);
         btnSave.setOnClickListener(new View.OnClickListener() {
                                        public void onClick(View v) {
@@ -57,7 +54,6 @@ public class FrgEditGoal extends Fragment{
                                            Long l = gsGoalClass.getSelectedItemId();
                                            Integer intGoalClass = l.intValue();
                                            Integer intGoalCount = parseInt(etGoalCount.getText().toString());
-
 
                                            editGoal(goalName, intGoalClass,intGoalCount);
                                        }

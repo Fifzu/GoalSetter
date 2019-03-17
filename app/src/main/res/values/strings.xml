@@ -13,9 +13,9 @@
     <string name="edit_goal">Edit Goal</string>
     <string name="current_mood">Aktueller Punktestand:</string>
     <string name="current_status">Dein Status:</string>
-    <string name="short_goals">Kurze Ziele</string>
-    <string name="medium_goals">Mittlere Ziele</string>
-    <string name="long_goals">Lange Ziele</string>
+    <string name="short_goals">Kurzfristige Ziele</string>
+    <string name="medium_goals">Mittelfristige Ziele</string>
+    <string name="long_goals">Langfristige Ziele</string>
     <string name="add_new_goal">Neues Ziel</string>
     <string name="name">Name</string>
     <string name="count">Anzahl</string>
