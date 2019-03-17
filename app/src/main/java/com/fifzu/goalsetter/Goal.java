@@ -107,6 +107,14 @@ public class Goal {
         }
     }
 
+    public void setGoalType(Integer goalType) {
+        this.goalType = goalType;
+    }
+
+    public void setValidUntil(LocalDateTime validUntil) {
+        this.validUntil = validUntil;
+    }
+
     public void setCount(Integer count) {
         this.count = count;
     }

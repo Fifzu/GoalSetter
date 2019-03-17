@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,21 +13,16 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity
@@ -93,7 +89,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new NavMood();
                 break;
 
-            case R.id.nav_add_goals:
+            case R.id.frg_add_goals:
                 fragment = new FrgAddGoals();
                 break;
 
@@ -247,6 +243,36 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+    public void editGoalWithID(int id) {
+        Bundle args = new Bundle();
+        args.putInt("goalId",id);
+        Fragment fragment = new FrgEditGoal ();
+        fragment.setArguments(args);
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame, fragment);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    public void editGoal(Goal editGoal) {
+
+        for (int i = 0;i <goalList.size();i++) {
+            if (goalList.get(i).getUniqueID() == editGoal.getUniqueID()) {
+                goalList.get(i).setName(editGoal.getName());
+                goalList.get(i).setFixed(editGoal.getFixed());
+                goalList.get(i).setGoalClass(editGoal.getGoalClass());
+                goalList.get(i).setCount(editGoal.getCount());
+                break;
+            }
+        }
+        FragmentManager fm = getSupportFragmentManager();
+        int a = fm.getBackStackEntryCount();
+        if (a > 0) {
+            fm.popBackStackImmediate();
+        }
+
+    }
 
     public ArrayList <Goal> getShortGoalList(){
         ArrayList<Goal> listToSend = new ArrayList<Goal>();
@@ -332,6 +358,16 @@ public class MainActivity extends AppCompatActivity
         }
         return id;
     }
+
+    public Goal getGoalWithId(int id) {
+        for (int i = 0;i <goalList.size();i++) {
+            if (goalList.get(i).getUniqueID() == id) {
+                return goalList.get(i);
+            }
+        }
+        return null;
+    }
+
 
     private void loadData() {
         Gson gson = new Gson();

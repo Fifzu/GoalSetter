@@ -10,6 +10,7 @@
     <string name="mood_manager">Mood Manager</string>
     <string name="goals_manager">Goals Manager</string>
     <string name="add_goals">Add Goals</string>
+    <string name="edit_goal">Edit Goal</string>
     <string name="current_mood">Aktueller Punktestand:</string>
     <string name="current_status">Dein Status:</string>
     <string name="short_goals">Kurze Ziele</string>
@@ -31,6 +32,7 @@
     <string name="no">Nein</string>
     <string name="confirm">Ziel bestätigen</string>
     <string name="delete">Ziel löschen</string>
+    <string name="edit">Ziel bearbeiten</string>
     <string name="nextGoal">Nächstes Ziel</string>
     <string name="actualMood">Laune</string>
 

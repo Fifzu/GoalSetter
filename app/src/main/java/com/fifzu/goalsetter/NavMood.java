@@ -80,6 +80,9 @@ public class NavMood extends Fragment{
                                 case R.id.confirm:
                                     confirmGoal(nextGoal.getUniqueID(),nextGoal.getName(),finalMainActivity);
                                     break;
+                                case R.id.edit:
+                                    editGoal(nextGoal.getUniqueID(),finalMainActivity);
+                                    break;
                             }
                             return true;
                         }
@@ -192,6 +195,9 @@ public class NavMood extends Fragment{
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage(getContext().getString(R.string.confirm_message) +"\n" + goatName).setPositiveButton(getContext().getString(R.string.yes), dialogClickListener)
                 .setNegativeButton(getContext().getString(R.string.no), dialogClickListener).show();
+    }
+    private void editGoal(final int index, final MainActivity myActivity) {
+        myActivity.editGoalWithID(index);
     }
 
     private void changeFragment(int fragmentId) {

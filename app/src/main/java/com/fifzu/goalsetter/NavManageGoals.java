@@ -52,7 +52,7 @@ public class NavManageGoals extends Fragment {
         Button btnAddGoal = view.findViewById(R.id.manageGoals_AddButton);
         btnAddGoal.setOnClickListener(new View.OnClickListener() {
                                           public void onClick(View v) {
-                                              changeFragment(R.id.nav_add_goals);
+                                              changeFragment(R.id.frg_add_goals);
                                           }
                                       }
         );

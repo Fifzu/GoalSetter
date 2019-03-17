@@ -12,10 +12,6 @@
             android:id="@+id/nav_manage_goals"
             android:icon="@drawable/ic_alarm_on"
             android:title="@string/goals_manager" />
-        <item
-            android:id="@+id/nav_add_goals"
-            android:visible="false"
-            android:title="Add Goals" />
     </group>
 
     <item android:title="@string/other">

@@ -91,6 +91,9 @@ class GoalAdapter extends BaseAdapter {
                             case R.id.confirm:
                                 confirmGoal(goalList.get(goalID).getUniqueID(),goalList.get(goalID).getName(),finalMainActivity);
                                 break;
+                            case R.id.edit:
+                                editGoal(goalList.get(goalID).getUniqueID(),finalMainActivity);
+                                break;
                         }
                         return true;
                     }
@@ -147,6 +150,11 @@ class GoalAdapter extends BaseAdapter {
         builder.setMessage(context.getString(R.string.confirm_message) +"\n" + goatName).setPositiveButton(context.getString(R.string.yes), dialogClickListener)
                 .setNegativeButton(context.getString(R.string.no), dialogClickListener).show();
     }
+
+    private void editGoal(final int index, final MainActivity myActivity) {
+        myActivity.editGoalWithID(index);
+    }
+
     private void changeFragment(int fragmentId) {
         mainActivity.displayFragment(fragmentId);
     }
