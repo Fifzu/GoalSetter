@@ -21,6 +21,7 @@
     <string name="name">Name</string>
     <string name="count">Anzahl</string>
     <string name="valid_until">Gültig bis</string>
+    <string name="fixed">Fixiert</string>
     <string name="goal_name">Zielbezeichnung</string>
     <string name="goal_count">Zielanzahl</string>
     <string name="goal_type">Ziellänge</string>

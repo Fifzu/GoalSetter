@@ -118,4 +118,6 @@ public class Goal {
     public void setCount(Integer count) {
         this.count = count;
     }
+
+
 }

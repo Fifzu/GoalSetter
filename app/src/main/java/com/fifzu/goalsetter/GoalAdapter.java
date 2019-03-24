@@ -8,11 +8,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 class GoalAdapter extends BaseAdapter {
@@ -25,7 +27,6 @@ class GoalAdapter extends BaseAdapter {
     private static LayoutInflater inflater = null;
 
     public GoalAdapter(Context context, ArrayList<Goal> goalList, MainActivity mainActivity) {
-        // TODO Auto-generated constructor stub
         this.context = context;
         this.goalList = goalList;
 
@@ -37,19 +38,16 @@ class GoalAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
         return goalList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        // TODO Auto-generated method stub
         return goalList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return position;
     }
 
@@ -68,13 +66,35 @@ class GoalAdapter extends BaseAdapter {
         TextView goalCount = vi.findViewById(R.id.goalCount);
         goalCount.setText(goalList.get(position).getCount().toString());
 
+        /*
+        TextView goalDaysLeft = vi.findViewById(R.id.goalDaysLeft);
+        String validUntil = mainActivity.formatDuration(LocalDateTime.now(),goalList.get(position).getValidUntilDate());
+        goalDaysLeft.setText(validUntil);
+*/
+
         TextView goalValid = vi.findViewById(R.id.goalValid);
-        goalValid.setText(goalList.get(position).getValidUntil());
+        String validUntil = " (" + mainActivity.formatDuration(LocalDateTime.now(),goalList.get(position).getValidUntilDate()) + ")";
+
+        goalValid.setText(goalList.get(position).getValidUntil()+validUntil);
+
+        CheckBox chkFixed = vi.findViewById(R.id.chkFixed);
+        chkFixed.setChecked(goalList.get(position).getFixed());
+
+
 
         LinearLayout llLayout = vi.findViewById(R.id.goalDescription);
 
         final int goalID  = position;
         final MainActivity finalMainActivity = mainActivity;
+
+        chkFixed.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                checkGoal(goalList.get(goalID).getUniqueID(),((CheckBox) v).isChecked(), finalMainActivity);
+            }
+        });
+
 
         llLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +170,14 @@ class GoalAdapter extends BaseAdapter {
         builder.setMessage(context.getString(R.string.confirm_message) +"\n" + goatName).setPositiveButton(context.getString(R.string.yes), dialogClickListener)
                 .setNegativeButton(context.getString(R.string.no), dialogClickListener).show();
     }
+
+
+    private void checkGoal(final int index, Boolean check, final MainActivity myActivity) {
+        myActivity.checkGoal(index, check);
+        this.notifyDataSetChanged();
+    }
+
+
 
     private void editGoal(final int index, final MainActivity myActivity) {
         myActivity.editGoalWithID(index);

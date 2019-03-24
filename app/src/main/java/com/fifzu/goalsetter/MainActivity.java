@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity
 
     private void deleteOldGoals() {
         for(int i =0; i< goalList.size();i++){
-            if(goalList.get(i).getValidUntilDate().isBefore(LocalDateTime.now())){
+            if(goalList.get(i).getValidUntilDate().isBefore(LocalDateTime.now())&&!goalList.get(i).getFixed()){
                 goalList.remove(i);
             }
         }
@@ -262,6 +262,28 @@ public class MainActivity extends AppCompatActivity
         ft.replace(R.id.content_frame, fragment);
         ft.addToBackStack(null);
         ft.commit();
+    }
+
+    public void checkGoal(int id, Boolean check) {
+        for (int i = 0;i <goalList.size();i++) {
+            if (goalList.get(i).getUniqueID() == id) {
+                if (check) {
+                    unCheckGoals(id);
+                } else {
+                    goalList.get(i).setFixed(false);
+                }
+            }
+        }
+
+    }
+
+    private void unCheckGoals(int id) {
+        for(int i = 0;i<goalList.size();i++) {
+            if (goalList.get(i).getUniqueID() != id && goalList.get(i).getFixed()==true && goalList.get(i).getGoalType()==goalList.get(id).getGoalType()) {
+                goalList.get(i).setFixed(false);
+            }
+        }
+        goalList.get(id).setFixed(true);
     }
 
     public void editGoal(Goal editGoal) {
@@ -424,19 +446,21 @@ public class MainActivity extends AppCompatActivity
     public Goal getNextGoal() {
 
         Goal nextGoal = new Goal();
-
         nextGoal.setName("No Goal defined");
 
-
-        if(goalList.size()>0) {
-            nextGoal = goalList.get(0);
-
-            for(int i =0; i< goalList.size(); i++) {
-                if(goalList.get(i).getValidUntilDate().isBefore(nextGoal.getValidUntilDate())) {
-                    nextGoal = goalList.get(i);
-                }
+        for(int i =0; i< goalList.size(); i++) {
+            if(!goalList.get(i).getFixed()){
+                nextGoal = goalList.get(i);
+                break;
             }
         }
+
+        for(int i =0; i< goalList.size(); i++) {
+            if(goalList.get(i).getValidUntilDate().isBefore(nextGoal.getValidUntilDate())&&!goalList.get(i).getFixed()) {
+                nextGoal = goalList.get(i);
+            }
+        }
+
         return nextGoal;
     }
 
@@ -450,7 +474,6 @@ public class MainActivity extends AppCompatActivity
         String str = daysSinceStart.format(formatter);
         return str;
     }
-
 
 
     public int[] getSavedStatistics() {

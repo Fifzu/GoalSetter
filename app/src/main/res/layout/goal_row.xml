@@ -44,6 +44,16 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/valid_until" />
+
+            <CheckBox
+                android:id="@+id/chkFixed"
+                style="@style/InputLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/fixed" />
+
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
