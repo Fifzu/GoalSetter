@@ -154,7 +154,7 @@
                         style="@style/InputLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="XXXX" />
+                        android:text="XXX" />
                 </LinearLayout>
             </LinearLayout>
 
